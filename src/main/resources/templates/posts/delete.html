@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header :: header(${'Delete Post'})">
+</head>
+<body>
+<div th:replace="/fragments/navbar :: navbar"></div>
+
+<h1 class="text-center">Delete A Blog</h1>
+
+<div class="col-md-8 col-md-offset-2">
+
+    <div id="errorBox" class="alert alert-dismissible alert-warning fade in hidden">
+        <h4>Warning!</h4>
+        <p>Please make sure both Title and Description are filled out.</p>
+    </div>
+
+    <form class="form-horizontal container-fluid" th:action="@{'/posts/' + *{id} + '/delete'}" method="post" th:object="${post}">
+        <div id="titleDiv" class="form-group">
+            <h5 id="titleIdentifier">Title:</h5>
+            <input id="title" th:field="*{title}" class="form-control disabled" />
+        </div>
+        <div id="descriptionDiv" class="form-group inputError">
+            <h5 id="descriptionIdentifier">Description:</h5>
+            <textarea th:field="*{description}" class="form-control disabled" rows="3" id="textArea"
+                      style="margin: 0px -0.84375px 0px 0px; height: 117px; width: 424px;"></textarea>
+        </div>
+        <div id="formButtons" class="form-group">
+            <div class="">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button id="submitForm" type="submit" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="text-center col-md-12">
+    <div th:replace="/fragments/footer :: footer"></div>
+</div>
+<div th:replace="/fragments/javascript :: javascript"></div>
+
+</body>
+</html>
