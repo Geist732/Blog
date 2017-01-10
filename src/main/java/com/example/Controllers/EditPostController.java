@@ -1,8 +1,10 @@
 package com.example.Controllers;
 
 import com.example.Models.Post;
-import com.example.dao.DaoFactory;
+import com.example.Models.Posts;
+//import com.example.dao.DaoFactory;
 import javafx.geometry.Pos;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,9 +23,12 @@ import java.util.List;
 @Controller
 public class EditPostController {
 
+    @Autowired
+    Posts postsDao;
+
     @GetMapping("/posts/{id}/edit")
-    public String showEditForm(@PathVariable int id, Model model){
-        Post post = DaoFactory.getPostsDao().getPostById(id);
+    public String showEditForm(@PathVariable long id, Model model){
+        Post post = postsDao.findOne(id);
         model.addAttribute("post", post);
         return "posts/edit";
     }
@@ -35,10 +40,10 @@ public class EditPostController {
             model.addAttribute("post",post);
             return "posts/edit";
         }
-        Post newPost = DaoFactory.getPostsDao().getPostById((int)post.getId());;
+        Post newPost = postsDao.findOne(post.getId());
         newPost.setTitle(post.getTitle());
         newPost.setDescription(post.getDescription());
-        DaoFactory.getPostsDao().editPost(newPost); //Post with specific ID number
+        postsDao.save(newPost); //Post with specific ID number
         return "redirect:/posts";
     }
 

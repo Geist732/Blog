@@ -8,6 +8,8 @@
 <div class="postContainer col-md-3 panel panel-default" th:each="posts : ${posts}" th:object="${posts}">
     <h2 th:text="*{title}">Post</h2>
     <p th:text="*{description}">Description</p>
+    <a th:href="@{'/posts/' + *{id} + '/edit'}">Edit</a>
+    <a th:href="@{'/posts/' + *{id} + '/delete'}">Delete</a>
 </div>
 
 

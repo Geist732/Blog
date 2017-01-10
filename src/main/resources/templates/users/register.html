@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header :: header(${'Register'})">
+</head>
+<body>
+<div th:replace="/fragments/navbar :: navbar"></div>
+<h1 class="text-center">Register</h1>
+
+
+<div class="col-md-8 col-md-offset-2">
+
+    <div id="errorBox" class="alert alert-dismissible alert-warning fade in hidden">
+        <h4>Warning!</h4>
+        <p>Please make sure both Title and Description are filled out.</p>
+    </div>
+
+    <form class="form-horizontal container-fluid" th:action="@{/register/user}" method="post" th:object="${user}">
+        <div id="titleDiv" class="form-group">
+            <h5 id="titleIdentifier">Username:</h5>
+            <input id="userName" th:field="*{username}" class="form-control" />
+            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+        </div>
+        <div class="form-group inputError">
+            <h5 id="descriptionIdentifier">Email:</h5>
+            <input id="email" th:field="*{email}" class="form-control" />
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        </div>
+        <div class="form-group inputError">
+            <h5>Password:</h5>
+            <input id="password" th:field="*{password}" class="form-control" />
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        </div>
+        <div id="formButtons" class="form-group">
+            <div class="">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button id="submitForm" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="text-center col-md-12">
+    <div th:replace="/fragments/footer :: footer"></div>
+</div>
+<div th:replace="/fragments/javascript :: javascript"></div>
+
+</body>
+</html>

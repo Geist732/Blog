@@ -30,6 +30,7 @@
 
         <!-- Add mapped classes here -->
         <mapping class="com.example.Models.Post"/>
+        <mapping class="com.example.Models.User"/>
         <!-- ... -->
     </session-factory>
 </hibernate-configuration>

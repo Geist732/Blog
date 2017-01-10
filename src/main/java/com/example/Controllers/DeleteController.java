@@ -1,7 +1,9 @@
 package com.example.Controllers;
 
-import com.example.dao.DaoFactory;
+import com.example.Models.Posts;
+//import com.example.dao.DaoFactory;
 import com.example.Models.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,18 +17,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class DeleteController {
 
+    @Autowired
+    Posts postsDao;
+
 
     @GetMapping("/posts/{id}/delete")
-    public String showDeleteForm(@PathVariable int id, Model model){
-        Post post = DaoFactory.getPostsDao().getPostById(id);
+    public String showDeleteForm(@PathVariable long id, Model model){
+        Post post = postsDao.findOne(id);
         model.addAttribute("post" , post);
         return "posts/delete";
     }
 
     @PostMapping("/posts/{id}/delete")
     public String deletePost(@ModelAttribute Post post){
-        Post newPost = DaoFactory.getPostsDao().getPostById((int)post.getId());
-        DaoFactory.getPostsDao().deletePost(newPost);
+//        Post newPost = DaoFactory.getPostsDao().getPostById((int)post.getId());
+        Post newPost = postsDao.findOne(post.getId());
+        postsDao.delete(newPost);
         return "redirect:/posts";
     }
 

@@ -1,6 +1,5 @@
 package com.example.dao;
 
-import com.example.Controllers.ListPosts;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;

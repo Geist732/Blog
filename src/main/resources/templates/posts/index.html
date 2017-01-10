@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="/fragments/header :: header(${'Post Blog'})"></head>
 <body>
 <div th:replace="/fragments/navbar :: navbar"></div>
@@ -24,19 +25,24 @@
         </ul>
     </div>
 
-    <a th:href="@{posts/id}">
-    <div class="postContainer col-md-3 panel panel-default" th:each="posts : ${posts}" th:object="${posts}">
-        <h2 th:text="*{title}">Post</h2>
-        <p th:text="*{description}">Description</p>
+<div id="wrapper">
+    <div class="columns" th:each="posts : ${posts}" th:object="${posts}">
+        <a th:href="@{'/posts/' + *{id}}">
+            <div class="panel panel-default item">
+                <div class="item panel-body">
+                    <h2 th:text="*{title}">Post</h2>
+                    <p th:text="*{description}">Description</p>
+                </div>
+            </div>
+        </a>
     </div>
-    </a>
-
 </div>
+
 
 <div class="text-center col-md-12">
     <div th:replace="/fragments/footer :: footer"></div>
 </div>
-
+</div>
 <div th:replace="/fragments/javascript :: javascript"></div>
 </body>
 </html>

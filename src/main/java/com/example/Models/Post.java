@@ -13,7 +13,7 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(nullable = false)
     @NotBlank(message = "Posts must have a title.")
@@ -25,7 +25,7 @@ public class Post {
     private String description;
 
 
-    public Post(int id, String title, String description){
+    public Post(long id, String title, String description){
         this.id = id;
         this.title = title;
         this.description = description;
@@ -36,7 +36,7 @@ public class Post {
     public long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -1,7 +1,9 @@
 package com.example.Controllers;
 
-import com.example.dao.DaoFactory;
+import com.example.Models.Posts;
+//import com.example.dao.DaoFactory;
 import com.example.Models.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -19,10 +21,13 @@ import java.util.List;
 @Controller
 public class CreatePostController {
 
+    @Autowired
+    Posts postsDao;
+
     @GetMapping("/posts")
     public String index(Model model){
-        List<Post> posts = DaoFactory.getPostsDao().all();
-        model.addAttribute("posts", posts);
+//        List<Post> posts = DaoFactory.getPostsDao().all();
+        model.addAttribute("posts", postsDao.findAll());
         return "posts/index";
     }
 
@@ -39,7 +44,7 @@ public class CreatePostController {
             model.addAttribute("post",post);
             return "posts/create";
         }
-        DaoFactory.getPostsDao().save(post);
+        postsDao.save(post);
         return "redirect:/posts";
     }
 
