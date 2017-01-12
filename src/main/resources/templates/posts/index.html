@@ -5,11 +5,11 @@
 <body>
 <div th:replace="/fragments/navbar :: navbar"></div>
 
-<h1 class="text-center">All Blogs</h1>
+<h1 class="text-center">All Posts</h1>
 
-<!--<div class="col-md-10 col-md-offset-1 container-fluid">-->
+<div id="wrapper" class="col-md-10 col-md-offset-1 container-fluid">
 
-    <div>
+    <div id="postNavigation">
         <ul class="nav nav-pills">
             <li class="active"><a href="#">All</a></li>
             <li class="disabled"><a href="#">New</a></li>
@@ -18,34 +18,46 @@
                     Filter by <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <div id="container">
-                        <li><a href="#">Date</a></li>
-                        <li><a href="#">Tag</a></li>
-                    </div>
+                    <li><a href="#">Date</a></li>
+                    <li><a href="#">Tag</a></li>
                 </ul>
             </li>
         </ul>
     </div>
 
 
-<div id="wrapper">
-    <div class="columns" th:each="posts : ${posts}" th:object="${posts}">
-        <a th:href="@{'/posts/' + *{id}}">
-            <div class="panel panel-default item">
-                <div class="item panel-body">
-                    <h2 th:text="*{title}">Post</h2>
-                    <p th:text="*{description}">Description</p>
+    <div id="grid" class="col-md-offset-1" th:each="posts : ${posts}" th:object="${posts}">
+        <div class="grid-sizer">
+            <a th:href="@{'/posts/' + *{id}}">
+                <div class="grid-item panel panel-default">
+                    <h1 class="text-center" th:text="*{title}">Title</h1>
+                    <p class="text-center" th:text="*{description}"> Description</p>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     </div>
-</div>
+
+
+
+
+<!--<div id="wrapper">-->
+    <!--<div class="columns" th:each="posts : ${posts}" th:object="${posts}">-->
+        <!--<a th:href="@{'/posts/' + *{id}}">-->
+            <!--<div class="panel panel-default item">-->
+                <!--<div class="item panel-body">-->
+                    <!--<h2 th:text="*{title}">Post</h2>-->
+                    <!--<p th:text="*{description}">Description</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</a>-->
+    <!--</div>-->
+<!--</div>-->
 
 
 <div class="text-center col-md-12">
     <div th:replace="/fragments/footer :: footer"></div>
 </div>
-</div>
 <div th:replace="/fragments/javascript :: javascript"></div>
+</div>
 </body>
 </html>
