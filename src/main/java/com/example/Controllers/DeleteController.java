@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * Created by Nick on 1/6/17.
  */
 @Controller
-public class DeleteController {
+public class DeleteController extends BaseController {
 
     @Autowired
     Posts postsDao;
@@ -24,6 +24,11 @@ public class DeleteController {
     @GetMapping("/posts/{id}/delete")
     public String showDeleteForm(@PathVariable long id, Model model){
         Post post = postsDao.findOne(id);
+
+        if (post.getUser().getId() != loggedInUser().getId()){
+            return "posts/index";
+        }
+
         model.addAttribute("post" , post);
         return "posts/delete";
     }

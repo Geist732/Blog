@@ -7,7 +7,7 @@
 
 <h1 class="text-center">All Blogs</h1>
 
-<div class="col-md-10 col-md-offset-1 container-fluid">
+<!--<div class="col-md-10 col-md-offset-1 container-fluid">-->
 
     <div>
         <ul class="nav nav-pills">
@@ -18,12 +18,15 @@
                     Filter by <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Date</a></li>
-                    <li><a href="#">Tag</a></li>
+                    <div id="container">
+                        <li><a href="#">Date</a></li>
+                        <li><a href="#">Tag</a></li>
+                    </div>
                 </ul>
             </li>
         </ul>
     </div>
+
 
 <div id="wrapper">
     <div class="columns" th:each="posts : ${posts}" th:object="${posts}">

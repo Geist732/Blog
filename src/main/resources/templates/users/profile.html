@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="/fragments/header :: header(${'Profile Page'})">
 </head>
 <body>
 <div th:replace="/fragments/navbar :: navbar"></div>
-<h1 class="text-center">Profile</h1>
+<h1 id="name" class="text-center">Profile</h1>
+
+
+    <h3 sec:authentication="principal.username">User</h3>
+    <p sec:authentication="principal.email">email</p>
+
 
 <div sec:authorize="isAuthenticated()">
     This content is only shown to authenticated users.

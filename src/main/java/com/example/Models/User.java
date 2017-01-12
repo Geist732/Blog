@@ -3,6 +3,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by Nick on 1/5/17.
@@ -29,6 +30,9 @@ public class User {
     @NotBlank(message = "Please enter your password.")
     @Size(min = 5, message = "A password must have at least 5 characters.")
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
 
 
     public User(int id, String userName, String email, String password){
@@ -71,9 +75,17 @@ public class User {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return String.format("username is %s email is %s and its ID is %d", username, email, id);
+    }
 
 
+    public List<Post> getPosts() {
+        return posts;
+    }
 
-
-
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
 }

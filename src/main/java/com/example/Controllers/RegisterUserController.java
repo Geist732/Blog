@@ -42,7 +42,7 @@ public class RegisterUserController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         usersDao.save(user);
-        return "users/profile";
+        return "redirect:/login";
     }
 
 

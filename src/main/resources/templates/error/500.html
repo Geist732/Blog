@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="/fragments/header :: header(${error})">
+</head>
+<body>
+
+<h1 th:text="${error}"></h1>
+
+</body>
+</html>

@@ -21,7 +21,7 @@ import java.util.List;
  */
 
 @Controller
-public class EditPostController {
+public class EditPostController extends BaseController {
 
     @Autowired
     Posts postsDao;
@@ -29,8 +29,13 @@ public class EditPostController {
     @GetMapping("/posts/{id}/edit")
     public String showEditForm(@PathVariable long id, Model model){
         Post post = postsDao.findOne(id);
+
+        if (post.getUser().getId() != loggedInUser().getId()){
+            return "posts/index";
+        }
         model.addAttribute("post", post);
         return "posts/edit";
+
     }
 
     @PostMapping("/posts/{id}/edit")
