@@ -7,30 +7,18 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class Application {
+public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 
 		SpringApplication.run(Application.class, args);
 
-		StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-				.configure()
-				.build()
-				;
-
-		SessionFactory sessionFactory = new MetadataSources(registry)
-				.buildMetadata()
-				.buildSessionFactory()
-				;
-
-		Session session = sessionFactory.openSession();
-
-		session.close();
-		sessionFactory.close();
-
-
-
+	}
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(Application.class);
 	}
 }

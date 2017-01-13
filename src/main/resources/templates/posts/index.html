@@ -30,6 +30,7 @@
         <div class="grid-sizer">
             <a th:href="@{'/posts/' + *{id}}">
                 <div class="grid-item panel panel-default">
+                    <img th:src="@{'uploads/' + *{upload_path}}" th:alt="'Image'" style="height: 100px; width: 100px;"/>
                     <h1 class="text-center" th:text="*{title}">Title</h1>
                     <p class="text-center" th:text="*{description}"> Description</p>
                 </div>

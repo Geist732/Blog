@@ -2,6 +2,7 @@ package com.example.Models;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotBlank;
 import org.omg.CORBA.Object;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -38,6 +39,8 @@ public class Post {
     private Date modifyDate;
 
 
+    @Value("${file-upload-path}")
+    private String upload_path;
 
 
     @ManyToOne
@@ -74,11 +77,9 @@ public class Post {
         this.description = description;
     }
 
-
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -86,7 +87,6 @@ public class Post {
     public Date getModifyDate() {
         return modifyDate;
     }
-
     public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
     }
@@ -94,8 +94,13 @@ public class Post {
     public Date getCreateDate() {
         return createDate;
     }
-
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+    public String getUpload_path(){return upload_path;}
+    public void setUpload_path(String uploadPath){ this.upload_path = uploadPath; }
+
+
+
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header :: header(${'Upload File'})">
+</head>
+<body>
+<div th:replace="/fragments/navbar :: navbar"></div>
+
+
+<form th:action="@{'/fileupload/' + *{id}}" method="post" enctype="multipart/form-data" th:object="${post}">
+    <h3 th:text="*{title}"></h3>
+    <label for="file">Upload a file!</label>
+    <input id="file" name="file" type="file" />
+
+    <label for="file_rename">Change file name</label>
+    <input id="file_rename" th:field="*{upload_path}" type="text" />
+    <br />
+
+    <input type="submit" value="upload" />
+</form>
+
+
+<div class="text-center col-md-12">
+    <div th:replace="/fragments/footer :: footer"></div>
+</div>
+<div th:replace="/fragments/javascript :: javascript"></div>
+</body>
+</html>
